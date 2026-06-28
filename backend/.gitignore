@@ -3,3 +3,7 @@ pb_data/
 
 # Air
 tmp/
+
+# Built frontend (embedded at build time, see Makefile)
+pb_public/*
+!pb_public/.gitkeep
