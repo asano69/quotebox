@@ -10,8 +10,8 @@ export default defineConfig({
     allowedHosts: true,
     changeOrigin: true,
     proxy: {
-      "/api": "http://127.0.0.1:3000",
-      "/_": "http://127.0.0.1:3000",
+      "/api": "http://localhost:3000",
+      "/_": "http://localhost:3000",
     },
   },
   build: {

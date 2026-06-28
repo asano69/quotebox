@@ -5,9 +5,9 @@ FRONTEND_PORT := 3001
 
 update:
 	cd frontend && pnpm install --lockfile-only
-	cd backend && go get -u && go mod tidy
+	#cd backend && go get -u && go mod tidy
 
-init: update
+init:
 	cd frontend && pnpm install
 	cd backend && go mod tidy
 	cd backend && go build -o tmp/main .
@@ -26,4 +26,6 @@ dev: kill-ports
 
 clean:
 	rm -fr backend/pb_data
+	#cd backend && go clean -modcache
+	#cd backend && go mod tidy
 
