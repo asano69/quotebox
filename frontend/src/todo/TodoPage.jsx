@@ -1,8 +1,5 @@
 import { createSignal, onMount, onCleanup, For, Show } from "solid-js";
-import PocketBase from "pocketbase";
-
-// Point this at your PocketBase instance.
-const pb = new PocketBase(window.location.origin);
+import { pb } from "../shared/api/pb.js";
 
 export default function App() {
   const [todos, setTodos] = createSignal([]);
