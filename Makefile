@@ -56,5 +56,10 @@ clean:
 	#cd backend && go mod tidy
 
 server: kill-ports build
-	./bin/my-app serve --http=0.0.0.0:3000
+	./bin/my-app superuser upsert admin@mail.internal password --dir=pb_data
+	./bin/my-app serve --http=0.0.0.0:3000 --dir=pb_data
 
+# pb_dataについて
+# ---------------
+# --dir=pb_dataは、バイナリのある場所からの相対パスになる。
+#  もし、--dirで場所を指定しなければ、コマンドを実行したカレントディレクトリにpb_dataが生成される。
