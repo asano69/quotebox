@@ -1,25 +1,24 @@
 import { createSignal } from "solid-js";
 import { pb } from "../utils/pb.js";
 
+// Returns current datetime formatted for <input type="datetime-local"> (YYYY-MM-DDTHH:mm).
+// toISOString() gives UTC, so we subtract the timezone offset to get local time.
+function nowLocal() {
+  const d = new Date();
+  return new Date(d - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+}
+
 export default function Sleep() {
-  const [date, setDate] = createSignal("");
+  const [date, setDate] = createSignal(nowLocal());
   const [quality, setQuality] = createSignal("3");
   const [tags, setTags] = createSignal("");
 
   const addLog = async (e) => {
     e.preventDefault();
-    
-    // 入力値が空の場合は処理を中断
-    if (!date()) return;
 
     try {
-      // 1. PocketBaseが受け付ける日付フォーマットに変換
-      // datetime-local の値 (YYYY-MM-DDTHH:mm) から Date オブジェクトを生成
-      const localDate = new Date(date());
-      
       await pb.collection("sleep_logs").create({
-        // ISO文字列 (YYYY-MM-DDTHH:mm:ss.sssZ) に変換して送信
-        date: localDate.toISOString(), 
+        date: new Date(date()).toISOString(),
         quality: Number(quality()),
         tags: tags()
           .split(",")
@@ -27,15 +26,12 @@ export default function Sleep() {
           .filter(Boolean),
       });
 
-      // 2. 状態のリセット
-      setDate("");
-      setQuality("3"); // 初期値に戻す
+      setDate(nowLocal());
+      setQuality("3");
       setTags("");
-      
-      alert("ログを保存しました！");
     } catch (error) {
-      console.error("保存に失敗しました:", error);
-      alert("エラーが発生しました: " + error.message);
+      console.error("Failed to save:", error);
+      alert("Error: " + error.message);
     }
   };
 
@@ -46,12 +42,11 @@ export default function Sleep() {
         <input
           type="datetime-local"
           value={date()}
-          // SolidJSでは target.value を安全に取得
           onInput={(e) => setDate(e.currentTarget.value)}
           required
         />
-        <select 
-          value={quality()} 
+        <select
+          value={quality()}
           onChange={(e) => setQuality(e.currentTarget.value)}
         >
           <option value="1">1</option>
@@ -70,5 +65,3 @@ export default function Sleep() {
     </div>
   );
 }
-
-
