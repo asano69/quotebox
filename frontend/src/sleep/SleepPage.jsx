@@ -1,5 +1,6 @@
-import { createSignal } from "solid-js";
+import { createSignal, onMount, For } from "solid-js";
 import { pb } from "../shared/api/pb.js";
+import "./SleepPage.css";
 
 function nowDate() {
   const d = new Date();
@@ -21,6 +22,22 @@ export default function Sleep() {
   const [time, setTime] = createSignal(nowTime());
   const [quality, setQuality] = createSignal("3");
   const [tags, setTags] = createSignal("");
+  const [recentLogs, setRecentLogs] = createSignal([]);
+
+  // "date" has a unique index, so sorting by it alone is enough to get
+  // chronological order (no need for a secondary sort on "time").
+  const loadRecent = async () => {
+    try {
+      const res = await pb
+        .collection("sleep_logs")
+        .getList(1, 7, { sort: "-date" });
+      setRecentLogs(res.items);
+    } catch (error) {
+      console.error("Failed to load recent logs:", error);
+    }
+  };
+
+  onMount(loadRecent);
 
   const addLog = async (e) => {
     e.preventDefault();
@@ -40,6 +57,7 @@ export default function Sleep() {
       setTime(nowTime());
       setQuality("3");
       setTags("");
+      await loadRecent();
     } catch (error) {
       console.error("Failed to save:", error);
       alert("Error: " + error.message);
@@ -79,6 +97,32 @@ export default function Sleep() {
         />
         <button type="submit">Add</button>
       </form>
+
+  <div class="table-wrapper">
+    <table>
+  <thead>
+    <tr>
+      <th>date</th>
+      <th>time</th>
+      <th>quality</th>
+      <th>tags</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <For each={recentLogs()}>
+      {(log) => (
+        <tr>
+          <td>{log.date}</td>
+          <td>{log.time}</td>
+          <td>{log.quality}</td>
+          <td>{log.tags?.join(", ")}</td>
+        </tr>
+      )}
+    </For>
+  </tbody>
+</table>
+    </div>
     </div>
   );
 }

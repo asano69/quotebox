@@ -20,7 +20,7 @@ kill-ports:
 
 
 
-dev: kill-ports
+server: kill-ports
 	cd backend && air &
 	cd frontend && pnpm run dev
 

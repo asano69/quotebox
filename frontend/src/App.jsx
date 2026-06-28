@@ -1,4 +1,5 @@
 import { Router, Route } from "@solidjs/router";
+
 import Home from "./home/HomePage.jsx";
 import About from "./about/AboutPage.jsx";
 import Sleep from "./sleep/SleepPage.jsx";
