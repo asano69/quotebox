@@ -1,10 +1,11 @@
+
 import { createSignal, onMount } from "solid-js";
+import { A } from "@solidjs/router";
 import { pb } from "../shared/api/pb.js";
-import QuoteForm from "./QuoteForm.jsx";
 import QuoteTable from "./QuoteTable.jsx";
 import "./QuotePage.css";
 
-export default function Quote() {
+export default function QuoteListPage() {
   const [recentLogs, setRecentLogs] = createSignal([]);
 
   // No "date" field in this schema anymore, so sort by Pocketbase's
@@ -21,20 +22,10 @@ export default function Quote() {
   };
   onMount(loadRecent);
 
-  const addLog = async (data) => {
-    try {
-      await pb.collection("quote_cards").create(data);
-      await loadRecent();
-    } catch (error) {
-      console.error("Failed to save:", error);
-      alert("Error: " + error.message);
-    }
-  };
-
   return (
     <div>
       <h1>Quote Log</h1>
-      <QuoteForm onAdd={addLog} />
+      <A href="/quote/new">Add Quote</A>
       <QuoteTable logs={recentLogs()} />
     </div>
   );
