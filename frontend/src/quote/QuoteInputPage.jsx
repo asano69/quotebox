@@ -17,7 +17,7 @@ export default function QuoteInputPage() {
 
   return (
     <div>
-      <h1>Add Quote</h1>
+      <h1>Add Card</h1>
       <QuoteForm onAdd={addLog} />
     </div>
   );

@@ -31,7 +31,7 @@ export default function QuoteForm(props) {
         placeholder="text"
         required
       />
-      <input
+      <textarea
         type="text"
         value={note()}
         onInput={(e) => setNote(e.currentTarget.value)}
