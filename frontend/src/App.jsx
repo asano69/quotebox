@@ -1,8 +1,8 @@
 
 import { Router, Route } from "@solidjs/router";
-import Home from "./home/HomePage.jsx";
-import About from "./about/AboutPage.jsx";
-import QuoteRoutes from "./quote/QuoteRoutes.jsx";
+import Home from "./features/home/HomePage.jsx";
+import About from "./features/about/AboutPage.jsx";
+import QuoteRoutes from "./features/quote/QuoteRoutes.jsx";
  
 export default function App() {
   return (

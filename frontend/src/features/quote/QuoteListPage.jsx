@@ -1,6 +1,6 @@
 import { createSignal, onMount } from "solid-js";
 import { A } from "@solidjs/router";
-import { pb } from "../shared/api/pb.js";
+import { pb } from "../../api/pb.js";
 import QuoteTable from "./QuoteTable.jsx";
 import "./QuotePage.css";
 
