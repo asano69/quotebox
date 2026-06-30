@@ -23,7 +23,11 @@ src/auth
 src/data
 - 静的データ置き場
 
-
+---
+参考：
+- “インデックスカード - Wikipedia”. en.wikipedia.org, [https://en.wikipedia.org/wiki/Index_card](https://en.wikipedia.org/wiki/Index_card), (Accessed 2026-06-30)
+- “情報カード - Wikipedia”. ja.wikipedia.org, [https://ja.wikipedia.org/wiki/%E6%83%85%E5%A0%B1%E3%82%AB%E3%83%BC%E3%83%89](https://ja.wikipedia.org/wiki/%25E6%2583%2585%25E5%25A0%25B1%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589), (Accessed 2026-06-30)
+- “カード型データベース - Wikipedia”. ja.wikipedia.org, [https://ja.wikipedia.org/wiki/%E3%82%AB%E3%83%BC%E3%83%89%E5%9E%8B%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9](https://ja.wikipedia.org/wiki/%25E3%2582%25AB%25E3%2583%25BC%25E3%2583%2589%25E5%259E%258B%25E3%2583%2587%25E3%2583%25BC%25E3%2582%25BF%25E3%2583%2599%25E3%2583%25BC%25E3%2582%25B9), (Accessed 2026-06-30)
 
 ---
 参考：
