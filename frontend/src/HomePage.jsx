@@ -1,12 +1,10 @@
 import { createSignal, onMount } from "solid-js";
-import { useNavigate } from "@solidjs/router";
 import { A } from "@solidjs/router";
 import { pb } from "./api/pb.js";
 import QuoteTable from "./quote/QuoteTable.jsx";
 import "./quote/QuotePage.css";
 
 export default function App() {
-  const navigate = useNavigate();
 
   const [recentLogs, setRecentLogs] = createSignal([]);
 
@@ -27,7 +25,7 @@ export default function App() {
   return (
     <div>
       <h1>Quotebox</h1>
-      <button onClick={() => navigate("/about")}>About</button>
+      <A href="/about">About</A>
       <A href="/new">Add Quote</A>
       <QuoteTable logs={recentLogs()} />
     </div>

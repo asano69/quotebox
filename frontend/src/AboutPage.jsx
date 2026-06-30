@@ -1,12 +1,10 @@
-import { useNavigate } from "@solidjs/router";
+import { A } from "@solidjs/router";
 
 export default function About() {
-  const navigate = useNavigate();
-
   return (
     <div>
       <h1>About</h1>
-      <button onClick={() => navigate(-1)}>戻る</button>
+      <A href="/">Home</A>
     </div>
   );
 }
