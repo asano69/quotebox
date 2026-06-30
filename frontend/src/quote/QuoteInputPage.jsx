@@ -1,5 +1,5 @@
 import { useNavigate } from "@solidjs/router";
-import { pb } from "../../api/pb.js";
+import { pb } from "../api/pb.js";
 import QuoteForm from "./QuoteForm.jsx";
 
 export default function QuoteInputPage() {
@@ -17,7 +17,7 @@ export default function QuoteInputPage() {
 
   return (
     <div>
-      <h1>Add Card</h1>
+      <h1>Add Quote</h1>
       <QuoteForm onAdd={addLog} />
     </div>
   );
